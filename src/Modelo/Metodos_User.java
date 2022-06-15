@@ -1,8 +1,8 @@
-package Metodos;
+package Modelo;
 
 import Conexion.ConexionBD;
-import static Metodos.Metodos_sql.resultado;
-import static Metodos.Metodos_sql.sentencia_preparada;
+import static Modelo.Metodos_sql.resultado;
+import static Modelo.Metodos_sql.sentencia_preparada;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.*;

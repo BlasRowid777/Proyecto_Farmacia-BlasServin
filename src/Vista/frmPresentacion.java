@@ -2,7 +2,7 @@
 package Vista;
 
 import Conexion.ConexionBD;
-import Metodos.Metodos_Presentacion;
+import Modelo.Metodos_Presentacion;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;

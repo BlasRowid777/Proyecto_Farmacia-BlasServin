@@ -1,8 +1,8 @@
 
-package Metodos;
+package Modelo;
 
 import Conexion.ConexionBD;
-import static Metodos.Metodos_Ventas.GP;
+import static Modelo.Metodos_Ventas.GP;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;

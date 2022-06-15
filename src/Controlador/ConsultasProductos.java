@@ -2,7 +2,7 @@
 package Controlador;
 
 import Conexion.ConexionBD;
-import Metodos.Metodos_Productos;
+import Modelo.Metodos_Productos;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

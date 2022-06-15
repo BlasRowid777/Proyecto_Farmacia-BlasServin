@@ -2,7 +2,7 @@
 package Vista;
 
 import Controlador.TotalVentasRealizadas;
-import Metodos.Metodos_Ventas;
+import Modelo.Metodos_Ventas;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;

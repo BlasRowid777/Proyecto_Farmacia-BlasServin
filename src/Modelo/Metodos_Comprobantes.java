@@ -1,4 +1,4 @@
-package Metodos;
+package Modelo;
 
 import Conexion.ConexionBD;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Metodos_Laboratorio {
+public class Metodos_Comprobantes {
 
     public static ConexionBD conexion = new ConexionBD();
     public static PreparedStatement GP;
@@ -23,10 +23,8 @@ public class Metodos_Laboratorio {
 
     private DefaultTableModel setTitulos() {
         DT = new DefaultTableModel();
-        DT.addColumn("ID");
-        DT.addColumn("Nombre");
-        DT.addColumn("Dirección");
-        DT.addColumn("Telófono");
+        DT.addColumn("ID Comprobante");
+        DT.addColumn("Descripcion");
         DT.addColumn("Estado");
         return DT;
     }
@@ -34,8 +32,8 @@ public class Metodos_Laboratorio {
 
     //ACTUALIZAR DATOS DE LAS TABLAS DE LA BASE DE DATOS
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public int ActualizarDatos(String ID, String Nombre, String Direccion, int Telefono, String Estado) {
-        String SQL = "UPDATE laboratorio SET Nombre = '" + Nombre + "', Direccion = '" + Direccion +  "', Telefono = '" + Telefono +  "', Estado = '" + Estado + "' WHERE IdLaboratorio = " + ID;
+    public int ActualizarDatos(String ID, String Descripcion, String Estado) {
+        String SQL = "UPDATE tipoComprobante SET Descripcion = '" + Descripcion +  "', Estado = '" + Estado + "' WHERE IdTipoComprobante = " + ID;
         int resultado = 0;
         Connection conexion = null;
 
@@ -59,7 +57,7 @@ public class Metodos_Laboratorio {
     //ELIMINAR REGISTROS
     //????????????????????????????????????????????????????????????????????????????????
     public int EliminarDatos(String ID){
-        String SQL = "DELETE FROM laboratorio WHERE IdLaboratorio=" + ID;
+        String SQL = "DELETE FROM tipoComprobante WHERE IdTipoComprobante =" + ID;
         int res = 0;
         Connection conexion = null;
 
@@ -81,19 +79,17 @@ public class Metodos_Laboratorio {
 
     //INSERTAR DATOS EN LA TABLA DE LA BASE DE DATOS
     //********************************************************************************************
-    public int guardarPresentacion(String Nombre, String Direccion, int Telefono, String Estado) {
+    public int guardarComprobante(String Descripcion, String Estado) {
         int resultado = 0;
         Connection conexion = null;
 
-        String sentencia_guardar = "INSERT INTO laboratorio (Nombre, Direccion, Telefono, Estado) VALUES (?,?,?,?)";
+        String sentencia_guardar = "INSERT INTO tipoComprobante (Descripcion, Estado) VALUES (?,?)";
 
         try {
             conexion = ConexionBD.conectar();
             GP = conexion.prepareStatement(sentencia_guardar);
-            GP.setString(1, Nombre);
-            GP.setString(2, Direccion);
-            GP.setInt(3, Telefono);
-            GP.setString(4, Estado);
+            GP.setString(1, Descripcion);
+            GP.setString(2, Estado);
             resultado = GP.executeUpdate();
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(null, "Registro guardado");
@@ -109,20 +105,18 @@ public class Metodos_Laboratorio {
     //-------------------------------------------------------------------------------------
     public DefaultTableModel getDatos() {
 
-        String MYSQL_SELECT = "SELECT * FROM laboratorio";
+        String MYSQL_SELECT = "SELECT * FROM tipoComprobante ORDER BY Descripcion ASC";
 
         try {
             setTitulos();
             CN = ConexionBD.conectar();
             PS = CN.prepareStatement(MYSQL_SELECT);
             RS = PS.executeQuery();
-            Object[] productos = new Object[5];
+            Object[] productos = new Object[3];
             while (RS.next()) {
                 productos[0] = RS.getInt(1);
                 productos[1] = RS.getString(2);
                 productos[2] = RS.getString(3);
-                productos[3] = RS.getInt(4);
-                productos[4] = RS.getString(5);
                 DT.addRow(productos);
 
             }

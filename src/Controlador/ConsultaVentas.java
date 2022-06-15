@@ -1,7 +1,7 @@
 
 package Controlador;
 import Conexion.ConexionBD;
-import Metodos.Metodos_Ventas;
+import Modelo.Metodos_Ventas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

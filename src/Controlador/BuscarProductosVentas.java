@@ -2,7 +2,7 @@
 package Controlador;
 
 import Conexion.ConexionBD;
-import Metodos.Metodos_Productos;
+import Modelo.Metodos_Productos;
 import Vista.frmPrincipal;
 import Vista.frmProductos;
 import java.sql.*;

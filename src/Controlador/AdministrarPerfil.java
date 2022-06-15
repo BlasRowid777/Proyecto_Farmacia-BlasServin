@@ -1,7 +1,7 @@
 package Controlador;
 
 import Conexion.ConexionBD;
-import Metodos.Metodos_User;
+import Modelo.Metodos_User;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;

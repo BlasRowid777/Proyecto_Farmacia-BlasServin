@@ -1,6 +1,6 @@
 package Vista;
 
-import Metodos.Metodos_sql;
+import Modelo.Metodos_sql;
 //import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;

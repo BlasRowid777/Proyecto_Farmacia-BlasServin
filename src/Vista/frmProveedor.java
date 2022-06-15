@@ -3,7 +3,7 @@ package Vista;
 
 import Controlador.BuscarClientes;
 import Conexion.ConexionBD;
-import Metodos.Metodos_Proveedor;
+import Modelo.Metodos_Proveedor;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;

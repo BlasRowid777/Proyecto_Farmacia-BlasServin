@@ -7,7 +7,7 @@ import Controlador.ConsultasEmpleados;
 import Controlador.ConsultasClientes;
 import Controlador.ConsultaVentas;
 import Controlador.ConsultaCompras;
-import Metodos.Metodos_User;
+import Modelo.Metodos_User;
 import java.util.*;
 import java.util.GregorianCalendar;
 import javax.swing.JInternalFrame;

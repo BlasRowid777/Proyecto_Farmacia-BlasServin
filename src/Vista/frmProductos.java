@@ -4,7 +4,7 @@ package Vista;
 import Controlador.BuscarPresentacion;
 import Controlador.BuscarLaboratorio;
 import Conexion.ConexionBD;
-import Metodos.Metodos_Productos;
+import Modelo.Metodos_Productos;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.ResultSet;

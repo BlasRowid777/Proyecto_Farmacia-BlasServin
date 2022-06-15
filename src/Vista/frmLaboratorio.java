@@ -2,7 +2,7 @@
 package Vista;
 
 import Conexion.ConexionBD;
-import Metodos.Metodos_Laboratorio;
+import Modelo.Metodos_Laboratorio;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

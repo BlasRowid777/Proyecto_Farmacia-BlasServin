@@ -2,7 +2,7 @@
 package Controlador;
 
 import Conexion.ConexionBD;
-import Metodos.Metodos_Compra;
+import Modelo.Metodos_Compra;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;

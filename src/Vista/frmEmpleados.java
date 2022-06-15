@@ -1,7 +1,7 @@
 package Vista;
 
 import Conexion.ConexionBD;
-import Metodos.Metodos_Empleados;
+import Modelo.Metodos_Empleados;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

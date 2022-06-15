@@ -1,5 +1,5 @@
 
-package Metodos;
+package Modelo;
 
 import Conexion.ConexionBD;
 import java.sql.*;
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Metodos_Proveedor {
+public class Metodos_Clientes {
     
     public static ConexionBD conexion = new ConexionBD();
     public static PreparedStatement GP;
@@ -23,24 +23,23 @@ public class Metodos_Proveedor {
 
     private DefaultTableModel setTitulos() {
         DT = new DefaultTableModel();
-        DT.addColumn("Codigo");
-        DT.addColumn("Nombre");
-        DT.addColumn("Dni");
-        DT.addColumn("Ruc");
-        DT.addColumn("Direccion");
-        DT.addColumn("Email");
+        DT.addColumn("Id");
+        DT.addColumn("Nombres");
+        DT.addColumn("Apellidos");
+        DT.addColumn("Sexo");
+        DT.addColumn("DNI");
         DT.addColumn("Telefono");
-        DT.addColumn("Banco");
-        DT.addColumn("Nro Cuenta");
-        DT.addColumn("Estado");
+        DT.addColumn("RUC");
+        DT.addColumn("Email");
+        DT.addColumn("Direccion");
         return DT;
     }
     //----------------------------------------------------------------------------
 
     //ACTUALIZAR DATOS DE LAS TABLAS DE LA BASE DE DATOS
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public int ActualizarProveedor(String Codigo, String Nombre, String DNI, String Ruc, String Direccion, String Email, String Telefono, String Banco, String Cuenta, String Estado) {
-        String SQL = "UPDATE proveedor SET Nombre = '" + Nombre + "', Dni = '" + DNI + "', Ruc = '" + Ruc + "', Direccion = '" + Direccion + "', Email = '" + Email + "', Telefono = '" + Telefono + "',  Banco = '" + Banco + "',  Cuenta = '" + Cuenta + "',  Estado = '" + Estado +"' WHERE IdProveedor = " + Codigo;
+    public int ActualizarClientes(String Id, String Nombres, String Apellidos, String Sexo, String DNI, String Telefono, String Ruc, String Email, String Direccion) {
+        String SQL = "UPDATE cliente SET Nombres = '" + Nombres + "', Apellidos = '" + Apellidos + "', Sexo = '" + Sexo + "', Dni = '" + DNI + "', Telefono = '" + Telefono + "', Ruc = '" + Ruc + "',  Email = '" + Email + "',  Direccion = '" + Direccion + "' WHERE idCliente = " + Id;
         int resultado = 0;
         Connection conexion = null;
 
@@ -50,7 +49,7 @@ public class Metodos_Proveedor {
             GP = conexion.prepareStatement(SQL);
             resultado = GP.executeUpdate();
             if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Modificado con Éxito");
+                JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
             }
             conexion.close();
         } catch (Exception e) {
@@ -63,8 +62,8 @@ public class Metodos_Proveedor {
 
     //ELIMINAR REGISTROS
     //????????????????????????????????????????????????????????????????????????????????
-    public int EliminarProveedor(String Bor){
-        String SQL = "DELETE FROM proveedor WHERE IdProveedor =" + Bor;
+    public int EliminarClientes(String Bor){
+        String SQL = "DELETE FROM cliente WHERE idCliente =" + Bor;
         int res = 0;
         Connection conexion = null;
 
@@ -73,7 +72,7 @@ public class Metodos_Proveedor {
             GP = conexion.prepareStatement(SQL);
             res = GP.executeUpdate();
             if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
             }
             
         } catch (Exception e) {
@@ -86,28 +85,27 @@ public class Metodos_Proveedor {
 
     //INSERTAR DATOS EN LA TABLA DE LA BASE DE DATOS
     //********************************************************************************************
-    public int guardarProveedor(String Nombre, String DNI, String Ruc, String Direccion, String Email, String Telefono, String Banco, String Cuenta, String Estado) {
+    public int guardarClientes(String Nombres, String Apellidos, String Sexo, String DNI, String Telefono, String Ruc, String Email, String Direccion) {
         int resultado = 0;
         Connection conexion = null;
 
-        String sentencia_guardar = "INSERT INTO proveedor (Nombre, Dni, Ruc, Direccion, Email, Telefono, Banco, Cuenta, Estado) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sentencia_guardar = "INSERT INTO cliente (Nombres, Apellidos, Sexo, Dni, Telefono, Ruc, Email, Direccion) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
             conexion = ConexionBD.conectar();
             GP = conexion.prepareStatement(sentencia_guardar);
             
-            GP.setString(1, Nombre);
-            GP.setString(2, DNI);
-            GP.setString(3, Ruc);
-            GP.setString(4, Direccion);
-            GP.setString(5, Email);
-            GP.setString(6, Telefono);
-            GP.setString(7, Banco);
-            GP.setString(8, Cuenta);
-            GP.setString(9, Estado);
+            GP.setString(1, Nombres);
+            GP.setString(2, Apellidos);
+            GP.setString(3, Sexo);
+            GP.setString(4, DNI);
+            GP.setString(5, Telefono);
+            GP.setString(6, Ruc);
+            GP.setString(7, Email);
+            GP.setString(8, Direccion);
             resultado = GP.executeUpdate();
             if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado con Ëxito");
+                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
             }
             conexion.close();
         } catch (Exception e) {
@@ -120,14 +118,14 @@ public class Metodos_Proveedor {
     //-------------------------------------------------------------------------------------
     public DefaultTableModel getDatos() {
 
-        String MYSQL_SELECT = "SELECT * FROM proveedor";
+        String MYSQL_SELECT = "SELECT * FROM cliente";
 
         try {
             setTitulos();
             CN = ConexionBD.conectar();
             PS = CN.prepareStatement(MYSQL_SELECT);
             RS = PS.executeQuery();
-            Object[] fila = new Object[10];
+            Object[] fila = new Object[9];
             while (RS.next()) {
                 fila[0] = RS.getString(1);
                 fila[1] = RS.getString(2);
@@ -138,7 +136,6 @@ public class Metodos_Proveedor {
                 fila[6] = RS.getString(7);
                 fila[7] = RS.getString(8);
                 fila[8] = RS.getString(9);
-                fila[9] = RS.getString(10);
                 DT.addRow(fila);
 
             }
@@ -155,10 +152,10 @@ public class Metodos_Proveedor {
     }
 
 //--------------------------------------------------------------------------------
-public int  ProveedorExistente(String Dni) {
+public int ClienteExistente(String Dni) {
         Connection conexion = null;
         ResultSet rs = null;
-        String sql = "SELECT COUNT(IdProveedor) FROM proveedor WHERE Dni = ? ";
+        String sql = "SELECT COUNT(idCliente) FROM cliente WHERE Dni = ? ";
 
         try {
             conexion = ConexionBD.conectar();
@@ -179,7 +176,7 @@ public int  ProveedorExistente(String Dni) {
 public int RucExistente(String Ruc) {
         Connection conexion = null;
         ResultSet rs = null;
-        String sql = "SELECT COUNT(IdProveedor) FROM proveedor WHERE Ruc = ? ";
+        String sql = "SELECT COUNT(idCliente) FROM cliente WHERE Ruc = ? ";
 
         try {
             conexion = ConexionBD.conectar();

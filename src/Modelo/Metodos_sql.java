@@ -1,4 +1,4 @@
-package Metodos;
+package Modelo;
 
 import Conexion.ConexionBD;
 import java.sql.*;

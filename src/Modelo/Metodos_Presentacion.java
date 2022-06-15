@@ -1,4 +1,4 @@
-package Metodos;
+package Modelo;
 
 import Conexion.ConexionBD;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Metodos_Comprobantes {
+public class Metodos_Presentacion {
 
     public static ConexionBD conexion = new ConexionBD();
     public static PreparedStatement GP;
@@ -23,8 +23,8 @@ public class Metodos_Comprobantes {
 
     private DefaultTableModel setTitulos() {
         DT = new DefaultTableModel();
-        DT.addColumn("ID Comprobante");
-        DT.addColumn("Descripcion");
+        DT.addColumn("Id");
+        DT.addColumn("Descripción");
         DT.addColumn("Estado");
         return DT;
     }
@@ -33,7 +33,7 @@ public class Metodos_Comprobantes {
     //ACTUALIZAR DATOS DE LAS TABLAS DE LA BASE DE DATOS
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public int ActualizarDatos(String ID, String Descripcion, String Estado) {
-        String SQL = "UPDATE tipoComprobante SET Descripcion = '" + Descripcion +  "', Estado = '" + Estado + "' WHERE IdTipoComprobante = " + ID;
+        String SQL = "UPDATE presentacion SET Descripcion = '" + Descripcion +  "', Estado = '" + Estado + "' WHERE IdPresentacion = " + ID;
         int resultado = 0;
         Connection conexion = null;
 
@@ -57,7 +57,7 @@ public class Metodos_Comprobantes {
     //ELIMINAR REGISTROS
     //????????????????????????????????????????????????????????????????????????????????
     public int EliminarDatos(String ID){
-        String SQL = "DELETE FROM tipoComprobante WHERE IdTipoComprobante =" + ID;
+        String SQL = "DELETE FROM presentacion WHERE IdPresentacion =" + ID;
         int res = 0;
         Connection conexion = null;
 
@@ -79,11 +79,11 @@ public class Metodos_Comprobantes {
 
     //INSERTAR DATOS EN LA TABLA DE LA BASE DE DATOS
     //********************************************************************************************
-    public int guardarComprobante(String Descripcion, String Estado) {
+    public int guardarPresentacion(String Descripcion, String Estado) {
         int resultado = 0;
         Connection conexion = null;
 
-        String sentencia_guardar = "INSERT INTO tipoComprobante (Descripcion, Estado) VALUES (?,?)";
+        String sentencia_guardar = "INSERT INTO presentacion (Descripcion, Estado) VALUES (?,?)";
 
         try {
             conexion = ConexionBD.conectar();
@@ -105,7 +105,7 @@ public class Metodos_Comprobantes {
     //-------------------------------------------------------------------------------------
     public DefaultTableModel getDatos() {
 
-        String MYSQL_SELECT = "SELECT * FROM tipoComprobante ORDER BY Descripcion ASC";
+        String MYSQL_SELECT = "SELECT * FROM presentacion ORDER BY Descripcion ASC";
 
         try {
             setTitulos();
